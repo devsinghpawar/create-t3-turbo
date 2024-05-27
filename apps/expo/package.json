@@ -52,7 +52,6 @@
     "@babel/preset-env": "^7.24.5",
     "@babel/runtime": "^7.24.5",
     "@types/babel__core": "^7.20.5",
-    "@types/react": "^18.3.2",
     "ajv": "^8.8.2",
     "eslint": "^9.2.0",
     "prettier": "^3.2.5",

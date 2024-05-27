@@ -38,7 +38,7 @@
     "@aintrest/tailwind-config": "*",
     "@aintrest/tsconfig": "*",
     "@types/node": "^20.12.9",
-    "@types/react": "^18.3.2",
+    "@types/react": "^18.2.79",
     "@types/react-dom": "^18.3.0",
     "dotenv-cli": "^7.4.2",
     "eslint": "^9.2.0",

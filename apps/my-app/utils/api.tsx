@@ -1,10 +1,10 @@
+import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import superjson from "superjson";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { httpBatchLink, loggerLink } from "@trpc/client";
 import type { AppRouter } from "@aintrest/api/src/root";
-import { useState } from "react";
 
 const createQueryClient = () =>
   new QueryClient({
@@ -43,7 +43,7 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
         }),
         httpBatchLink({
           transformer: superjson,
-          url: `http://192.168.29.237:3000/api/trpc`,
+          url: `http://192.168.82.62:3000/api/trpc`,
           headers() {
             const headers = new Map<string, string>();
             headers.set("x-trpc-source", "expo-react");

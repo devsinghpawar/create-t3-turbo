@@ -34,7 +34,7 @@
     "@aintrest/prettier-config": "*",
     "@aintrest/tailwind-config": "*",
     "@aintrest/tsconfig": "*",
-    "@types/react": "^18.3.2",
+    "@types/react": "^18.2.79",
     "eslint": "^9.2.0",
     "prettier": "^3.2.5",
     "react": "18.2.0",
