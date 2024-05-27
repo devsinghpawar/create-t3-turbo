@@ -3,7 +3,12 @@ const { getDefaultConfig } = require("expo/metro-config");
 const { FileStore } = require("metro-cache");
 const { withNativeWind } = require("nativewind/metro");
 
+const config = getDefaultConfig(__dirname);
 const path = require("path");
+// Remove all console logs in production...
+config.transformer.minifierConfig.compress.drop_console = true;
+config.resolver.sourceExts = [...config.resolver.sourceExts, "mjs", "cjs"];
+module.exports = config;
 
 module.exports = withTurborepoManagedCache(
   withMonorepoPaths(
@@ -13,6 +18,7 @@ module.exports = withTurborepoManagedCache(
     }),
   ),
 );
+config.resolver.sourceExts = [...config.resolver.sourceExts, "mjs", "cjs"];
 
 /**
  * Add the monorepo paths to the Metro config.
@@ -34,6 +40,7 @@ function withMonorepoPaths(config) {
     path.resolve(projectRoot, "node_modules"),
     path.resolve(workspaceRoot, "node_modules"),
   ];
+  config.resolver.sourceExts = [...config.resolver.sourceExts, "mjs", "cjs"];
 
   return config;
 }
@@ -51,5 +58,7 @@ function withTurborepoManagedCache(config) {
   config.cacheStores = [
     new FileStore({ root: path.join(__dirname, "node_modules/.cache/metro") }),
   ];
+  config.resolver.sourceExts = [...config.resolver.sourceExts, "mjs", "cjs"];
+
   return config;
 }

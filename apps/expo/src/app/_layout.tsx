@@ -7,28 +7,34 @@ import { useColorScheme } from "nativewind";
 import { TRPCProvider } from "~/utils/api";
 
 import "../styles.css";
+import { View, Text, } from "react-native";
+
+
 
 // This is the main layout of the app
 // It wraps your pages with the providers they need
 export default function RootLayout() {
-  const { colorScheme } = useColorScheme();
   return (
     <TRPCProvider>
       {/*
           The Stack component displays the current page.
           It also allows you to configure your screens 
         */}
-      <Stack
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: "#f472b6",
-          },
-          contentStyle: {
-            backgroundColor: colorScheme == "dark" ? "#09090B" : "#FFFFFF",
-          },
-        }}
-      />
-      <StatusBar />
+      <Stack>
+        <Stack.Screen
+          options={{ title: "Home Page" }}
+        />
+        <View className="py-2">
+          <Text className="font-semibold italic text-primary">
+            Press on a post
+          </Text>
+        </View>
+
+        <StatusBar />
+
+      </Stack>
+
+
     </TRPCProvider>
   );
 }

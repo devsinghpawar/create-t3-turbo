@@ -5,7 +5,7 @@ import { Link, Stack } from "expo-router";
 import { FlashList } from "@shopify/flash-list";
 
 import type { RouterOutputs } from "~/utils/api";
-import { api } from "~/utils/api";
+import { TRPCProvider, api } from "~/utils/api";
 
 function PostCard(props: {
   post: RouterOutputs["post"]["all"][number];
@@ -95,50 +95,53 @@ function CreatePost() {
 }
 
 export default function Index() {
-  const utils = api.useUtils();
+  // const utils = api.useUtils();
 
-  const postQuery = api.post.all.useQuery();
+  // const postQuery = api.post.all.useQuery();
 
-  const deletePostMutation = api.post.delete.useMutation({
-    onSettled: () => utils.post.all.invalidate().then(),
-  });
+  // const deletePostMutation = api.post.delete.useMutation({
+  //   onSettled: () => utils.post.all.invalidate().then(),
+  // });
 
   return (
-    <SafeAreaView className=" bg-background">
+    <TRPCProvider>
+      {/* <SafeAreaView className=" bg-background"> */}
       {/* Changes page title visible on the header */}
-      <Stack.Screen options={{ title: "Home Page" }} />
-      <View className="h-full w-full bg-background p-4">
-        <Text className="pb-2 text-center text-5xl font-bold text-foreground">
-          Create <Text className="text-primary">T3</Text> Turbo
-        </Text>
-
-        <Pressable
-          onPress={() => void utils.post.all.invalidate()}
-          className="flex items-center rounded-lg bg-primary p-2"
-        >
-          <Text className="text-foreground"> Refresh posts</Text>
-        </Pressable>
-
-        <View className="py-2">
-          <Text className="font-semibold italic text-primary">
-            Press on a post
+      <Stack>
+        <Stack.Screen options={{ title: "Home Page" }} />
+        <View className="h-full w-full bg-background p-4">
+          <Text className="pb-2 text-center text-5xl font-bold text-foreground">
+            Create <Text className="text-primary">T3</Text> Turbo
           </Text>
-        </View>
 
-        <FlashList
-          data={postQuery.data}
-          estimatedItemSize={20}
-          ItemSeparatorComponent={() => <View className="h-2" />}
-          renderItem={(p) => (
-            <PostCard
-              post={p.item}
-              onDelete={() => deletePostMutation.mutate(p.item.id)}
-            />
-          )}
-        />
+          <Pressable
+            // onPress={() => void utils.post.all.invalidate()}
+            className="flex items-center rounded-lg bg-primary p-2"
+          >
+            <Text className="text-foreground"> Refresh posts</Text>
+          </Pressable>
 
-        <CreatePost />
-      </View>
-    </SafeAreaView>
+          <View className="py-2">
+            <Text className="font-semibold italic text-primary">
+              Press on a post
+            </Text>
+          </View>
+
+          {/* <FlashList
+            data={[{ item: "yoyo" }]}
+            estimatedItemSize={20}
+            ItemSeparatorComponent={() => <View className="h-2" />}
+            renderItem={(p) => (
+              <PostCard
+                post={p.item}
+                onDelete={() => deletePostMutation.mutate(p.item.id)}
+              />
+            )}
+          /> */}
+
+          <CreatePost />
+        </View> </Stack>
+      {/* </SafeAreaView> */}
+    </TRPCProvider>
   );
 }

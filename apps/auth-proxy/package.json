@@ -1,5 +1,5 @@
 {
-  "name": "@acme/auth-proxy",
+  "name": "@aintrest/auth-proxy",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,16 +14,16 @@
     "@auth/core": "0.31.0"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tailwind-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@aintrest/eslint-config": "*",
+    "@aintrest/prettier-config": "*",
+    "@aintrest/tailwind-config": "*",
+    "@aintrest/tsconfig": "*",
     "@types/node": "^20.12.9",
     "eslint": "^9.2.0",
     "h3": "^1.11.1",
     "nitropack": "^2.9.6",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.3.3"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@aintrest/prettier-config"
 }
